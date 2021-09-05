@@ -1,4 +1,6 @@
+
 {% load static %}
+{% load cart_template_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,9 +59,67 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        
         {% endfor %}
     {% endif %}
     </div>
+    {% comment %} navbar {% endcomment %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+        <strong class="blue-text">MDB</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item mr-3">
+          {% if request.user.is_authenticated %}
+            <span>
+            <a href={%url 'main:logout' %}>Log out<a/>
+            </span>
+          {% else %}
+            <span>
+            <a href={%url 'main:login' %}>Log in<a/>
+            </span>
+          {% endif %}
+           
+            <span>
+            <a href={%url 'main:signup' %}>Sign up<a/>
+            </span>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href={% url 'main:order-summary' %}>
+              <span class="badge red z-depth-1 mr-1"> {{request.user|cart_count}} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <div class="mb-5">
+  </div>
 
     {% block content %}
     {% endblock content %}
@@ -87,3 +147,4 @@
   
 </body> 
 </html>
+

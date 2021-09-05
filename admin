@@ -1,3 +1,11 @@
 user: example 
 email: example@example.com
 pass: example 
+
+real:
+user: admin
+pass: admin
+
+postgres:
+    user: postgres 
+    pass: Middlemarch654
