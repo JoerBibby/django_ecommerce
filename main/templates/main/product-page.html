@@ -23,7 +23,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg  " class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -49,12 +49,12 @@
             <p class="lead">
             {% if item.discount_price %}
               <span class="mr-1">
-              <del>{{item.price}}</del>
+              <del>${{item.price}}</del>
               </span>
-              <span>{{item.discount_price}}</span>
+              <span>${{item.discount_price}}</span>
             {% else %}
             <span class="mr-1">
-              {{item.price}}
+              ${{item.price}}
               </span>
               
               
@@ -100,9 +100,7 @@
 
           <h4 class="my-4 h4">Additional information</h4>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+          <p>Beautiful denim shirt, very high quality, made in the uk. Get it while you can folks, cos these are going quick!</p>
 
         </div>
         <!--Grid column-->
@@ -114,7 +112,7 @@
       <div class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
+        {% comment %} <div class="col-lg-4 col-md-12 mb-4"> 
 
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
 
@@ -135,7 +133,7 @@
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
 
         </div>
-        <!--Grid column-->
+        <!--Grid column--> {% endcomment %}
 
       </div>
       <!--Grid row-->
@@ -149,14 +147,14 @@
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
+      {% comment %} <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
         role="button">Download MDB
         <i class="fas fa-download ml-2"></i>
       </a>
       <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
         free tutorial
         <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
+      </a> {% endcomment %}
     </div>
     <!--/.Call to action-->
 

@@ -15,7 +15,7 @@ import stripe
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 1
+    paginate_by = 3
     template_name = 'main/home-page.html'
 
 
@@ -44,9 +44,14 @@ class OrderSummary(LoginRequiredMixin ,View):
 class CheckoutPage(View):
     def get(self, *args, **kwargs):
         form = BillingAdressForm()
+        order_qs = Order.objects.filter(user=self.request.user, ordered=False)
+        order = order_qs[0]
         context = {
-            'form': form
+            'form': form,
+            'order': order
         }
+
+        
         return render(self.request, 'checkout-page.html', context )
 
     def post(self, *args, **kwargs):

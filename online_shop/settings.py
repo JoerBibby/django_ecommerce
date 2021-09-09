@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from django.core.management.utils import get_random_secret_key
-import sys
-import dj_database_url
+# import sys
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+SECRET_KEY = 'django-insecure-y)(x-gl87u^6*voj-_v2xy#5&dda1cwx_3xwuk%@a)e_$613xi'
+# SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-# ALLOWED_HOSTS = []
+# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-    'django_countries'
+    # 'django_countries'
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
 ]
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'online_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [ #os.path.join(BASE_DIR, 'templates'),
                 os.path.join(BASE_DIR, 'main', 'templates', 'main')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -80,9 +81,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries':{
-                
-            }
+            
         },
     },
 ]
@@ -92,28 +91,29 @@ WSGI_APPLICATION = 'online_shop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-            'NAME': 'postgres',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-            'USER': 'postgres',
+#         'NAME': 'postgres',
 
-            'PASSWORD': 'Middlemarch654',
+#         'USER': 'postgres',
 
-            'HOST': 'localhost',
+#         'PASSWORD': 'Middlemarch654',
 
-            'PORT': '5432',
-        }
+#         'HOST': 'localhost',
+
+#         'PORT': '5432',
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+}
 
 
 

@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-dj-database-url = "*"
-gunicorn = "*"
+django = "*"
+django-allauth = "*"
+django-crispy-forms = "*"
+stripe = "*"
+django-countries = "*"
 
 [dev-packages]
 

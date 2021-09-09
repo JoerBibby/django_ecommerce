@@ -16,6 +16,7 @@
   {%block content%}
   <!--Main layout-->
   <h2 class="my-5 h2 text-center">Checkout form</h2>
+  
   <main class=" pt-4">
     <div class="container wow fadeIn" style="display: flex;">
 
@@ -61,9 +62,22 @@
 
           <!-- Cart -->
           <ul class="list-group mb-3 z-depth-1">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+          {% for order_item in order.items.all %}
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Product name</h6>
+                <h6 class="my-0">{{order_item.item.title}}</h6>
+                <small class="text-muted">{{order_item.item.description}}</small>
+              </div>
+              {% if order_item.item.discount_price%}
+              <span class="text-muted">${{order_item.item.discount_price}}</span>
+              {% else %}
+              <span class="text-muted">${{order_item.item.price}}</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+            {% comment %} <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Product name</h6> 
                 <small class="text-muted">Brief description</small>
               </div>
               <span class="text-muted">$12</span>
@@ -81,7 +95,7 @@
                 <small class="text-muted">Brief description</small>
               </div>
               <span class="text-muted">$5</span>
-            </li>
+            </li> {% endcomment %}
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
                 <h6 class="my-0">Promo code</h6>
@@ -91,7 +105,7 @@
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>$20</strong>
+              <strong>${{order.get_total}}</strong>
             </li>
           </ul>
           <!-- Cart -->
@@ -122,12 +136,12 @@
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank" role="button">Download MDB
+      {% comment %} <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank" role="button">Download MDB
         <i class="fas fa-download ml-2"></i>
       </a>
       <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start free tutorial
         <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
+      </a> {% endcomment %}
     </div>
     <!--/.Call to action-->
 

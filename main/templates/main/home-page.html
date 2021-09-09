@@ -1,5 +1,5 @@
-{% extends 'base.html ' %}
-{% block content %}
+
+{% load cart_template_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +17,22 @@
   <link href="{% static 'main/css/mdb.min.css' %}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{% static 'main/css/style.min.css' %}" rel="stylesheet">
+
+  <script type="text/javascript" src="{% static 'main/js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'main/js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'main/js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'main/js/mdb.min.js' %}"></script>
+
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script> 
+
   <style type="text/css">
     html,
     body,
@@ -50,9 +66,89 @@
 
 <body>
 
+
+
+
+
+
+  <div class="mt-5 pt-4">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        {% endfor %}
+    {% endif %}
+    </div>
+    {% comment %} navbar {% endcomment %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="{% url 'main:home_page' %}" >
+        <strong class="blue-text">Django-Ecommerce</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons" style="align-items:flex-end;">
+          <li class="nav-item mr-3">
+          {% if request.user.is_authenticated %}
+            <span class="mr-2 mt-5">
+            <a href={%url 'main:logout' %}>Log out<a/>
+            </span>
+          {% else %}
+            <span class="mr-2 mt-5">
+            <a href={%url 'main:login' %}>Log in<a/>
+            </span>
+          {% endif %}
+           
+            <span>
+            <a href={%url 'main:signup' %}>Sign up<a/>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href={% url 'main:order-summary' %}>
+              
+              <span class="badge red z-depth-1 mr-1"> {{request.user|cart_count}} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <div class="mb-5">
+  </div>
+
  
 
  
+
+
+
 
     
 
@@ -128,7 +224,7 @@
       {% comment %} main content {% endcomment %}
             {% for item  in object_list %}
             <!--Card-->
-            <div class="card">
+            <div class="card m-2" style="width:30%;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -156,10 +252,10 @@
 
                 <h4 class="font-weight-bold blue-text">
                   {% if item.discount_price %}
-                  <del>{{ item.price }}</del>
-                  <strong>{{ item.discount_price }}</strong>
+                  <del>${{ item.price }}</del>
+                  <strong>${{ item.discount_price }}</strong>
                   {% else %}
-                  <strong>{{ item.price }}</strong>
+                  <strong>${{ item.price }}</strong>
                   {% endif %}
                   
                 </h4>
@@ -176,7 +272,7 @@
           
 {% comment %} 
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-  6 mb-4">
 
             <!--Card-->
             <div class="card">
@@ -534,14 +630,14 @@
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
+      <!-- <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
         role="button">Download MDB
         <i class="fas fa-download ml-2"></i>
       </a>
       <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
         free tutorial
         <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
+      </a> -->
     </div>
     <!--/.Call to action-->
 
@@ -609,5 +705,5 @@
 
   </script>
 </body>
-{% endblock %}
+
 </html>

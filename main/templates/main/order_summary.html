@@ -30,7 +30,7 @@
     <tr>
         <th scope="row">{{forloop.counter}}</th>
         <td>{{ order_item.item }}</td>
-        <td>{{ order_item.item.price}}</td>
+        <td>${{ order_item.item.price}}</td>
         <td>
           {{ order_item.quantity }}
           <a href={{order_item.item.get_add_at_checkout_url}}><i class="fas fa-plus"></i></a>
@@ -38,9 +38,9 @@
           
         </td>
         {% if order_item.item.discount_price %}
-        <td><del>{{order_item.get_total_price}}</del><span class="ml-2">{{order_item.get_total_discount_price}}</span></td>
+        <td><del>${{order_item.get_total_price}}</del><span class="ml-2">${{order_item.get_total_discount_price}}</span></td>
         {%else%}
-        <td>{{order_item.get_total_price}}</td>
+        <td>${{order_item.get_total_price}}</td>
         {%endif%}
       <td>
         <a style='color: red' class='float-right' href={{order_item.item.get_remove_from_cart_url}} ><i class="far fa-trash-alt"></i></a>
@@ -54,7 +54,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><b>{{ order.get_total }}</b></td>
+        <td><b>${{ order.get_total }}</b></td>
       </tr>
     {% if order.items.filter.exists %}
       <tr>
