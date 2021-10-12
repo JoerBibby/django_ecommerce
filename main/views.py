@@ -19,6 +19,43 @@ class HomeView(ListView):
     template_name = 'main/home-page.html'
 
 
+# shows item by category
+class FilteredHomeViewByCategory(ListView):
+    model = Item
+    paginate_by = 3
+    template_name = 'main/home-page.html'
+
+
+    def get_queryset(self):
+        
+        return Item.objects.filter(category=self.kwargs['category'])
+
+    def get(self, *args, **kwargs):
+        items = None
+        if self.kwargs['category'] == 'all':
+            items = Item.objects.all()
+        else:
+            items = Item.objects.filter(category=self.kwargs['category'])
+
+        context = {
+            "category": self.kwargs['category'],
+            "items": items
+        }
+        return render(self.request, 'main/filtered.html', context)
+
+
+
+
+
+# match search term to Item.title 
+class SearchView(ListView):
+    model = Item
+    paginate_by = 3
+    tempalte_name = 'main/home-page.html'
+
+    def get_queryset(self):
+
+        return Item.objects.filter(title=self.kwargs['title'])
 
 class ProductView(DetailView):
     model = Item 

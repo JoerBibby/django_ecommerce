@@ -31,9 +31,13 @@ class Item(models.Model):
     label = models.CharField(choices=LABEL_CHOICES, max_length=1, default='S')
     slug = models.SlugField(default='item')
     description = models.TextField(default='This is an item')
+    image_file = models.CharField(max_length=100)
 
     def get_absolute_url(self):
         return reverse("main:product_page", kwargs={"slug": self.slug})
+
+    def get_image_file(self):
+        return self.image_file
     
 
     def __str__(self):

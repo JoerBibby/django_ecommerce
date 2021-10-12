@@ -1,8 +1,10 @@
 from django.urls import path
 from .views import (
     CheckoutPage,
+    FilteredHomeViewByCategory,
     HomeView,
     ProductView,
+    SearchView,
     add_item_to_cart,
     remove_from_cart,
     login,
@@ -18,6 +20,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home_page'),
+    path('filter/<category>', FilteredHomeViewByCategory.as_view(), name='filtered'),
+    path('search/<title>', SearchView.as_view(), name='search' ),
     path('product/<slug>', ProductView.as_view(), name='product_page'),
     path('order-summary/', OrderSummary.as_view(), name='order-summary'),
     path('checkout/', CheckoutPage.as_view(), name='checkout_page'),
@@ -30,5 +34,6 @@ urlpatterns = [
     path('add-item-at-checkout/<slug>', add_item_at_checkout, name='add-to-checkout'),
     path('payment/<payment_option>', PaymentView.as_view(), name='payment'),
     path('create-checkout-session/', create_checkout_session, name='checkout-session')
-
 ]
+
+

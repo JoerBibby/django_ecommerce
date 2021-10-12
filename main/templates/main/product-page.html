@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +24,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg  " class="img-fluid" alt="">
+          <img src="{% static item.get_image_file %}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -34,17 +35,7 @@
           <!--Content-->
           <div class="p-4">
 
-            <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">Category 2</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1">Bestseller</span>
-              </a>
-            </div>
+            
 
             <p class="lead">
             {% if item.discount_price %}
@@ -96,13 +87,7 @@
       <div class="row d-flex justify-content-center wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-6 text-center">
-
-          <h4 class="my-4 h4">Additional information</h4>
-
-          <p>Beautiful denim shirt, very high quality, made in the uk. Get it while you can folks, cos these are going quick!</p>
-
-        </div>
+       
         <!--Grid column-->
 
       </div>

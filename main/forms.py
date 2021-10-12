@@ -4,7 +4,7 @@ from django.forms.widgets import CheckboxInput, RadioSelect, TextInput
 
 PAYMENT_OPTIONS = (
     ('S', 'Stripe'),
-    ('P', 'Paypal')
+
 )
 
 class NameForm(forms.Form):
